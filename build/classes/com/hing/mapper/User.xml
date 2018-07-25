@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.hing.mapper.UserMapper">
+		<insert id="add" parameterType="User">
+			insert into CUX_USERS(USER_ID,USER_NAME,`PASSWORD`,SEX,AGE,PHONE_NUMBER,COMMENTS) values(#{USER_ID},#{USER_NAME},#{PASSWORD},#{SEX},#{AGE},#{PHONE_NUMBER},#{COMMENTS})
+		</insert>
+		
+		<delete id="delete" parameterType="long">
+			delete from CUX_USERS where USERID=#{id}
+		</delete>
+		
+		<update id="update" parameterType="User">
+			update CUX_USERS set USER_NAME=#{USER_NAME},`PASSWORD`=#{PASSWORD},SEX=#{SEX},AGE=#{AGE},PHONE_NUMBER=#{PHONE_NUMBER},COMMENTS=#{COMMENTS} where USER_ID=#{USER_ID}
+		</update>
+		
+		<select id="get" parameterType="long" resultType="User">
+			select * from CUX_USERS where USER_ID=#{id}	
+		</select>
+		
+		<select id="getByUserName" parameterType="String" resultType="User">
+			select * from CUX_USERS where USER_NAME=#{name}	
+		</select>
+		
+		<select id="list" resultType="User">
+			select * from CUX_USERS
+		</select>
+	</mapper>

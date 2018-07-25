@@ -1,0 +1,50 @@
+#thehead{
+	margin:0px 100px 5px 1px;
+	height:10px;
+	width:50px;
+	float:right;
+}
+#title{
+	margin-bottom:30px;
+}
+.btn btn-info{
+	text-align:center;
+}
+.form-search{
+	float:right;
+	margin-right:50px;
+}
+#footer p{
+	margin-left:300px;
+	border:2px ;
+	text-weight:bord;
+}
+#changPassword,#editItem,#addItem,#changeInformation{
+	margin-top: 20px;
+}
+
+#changPassword{
+	display:none;
+}
+#editItem{
+	display:inherit;
+}
+#addItem{
+	display:none;
+}
+#changeInformation{
+	display:none;
+}
+#welcome{
+	margin-left:20px;
+	background-color：red;
+}
+#goToAdd{
+	width: 50px;
+	height: 50px;
+	border-radius:50%;
+	text-wight:bold;
+}
+.form-search{
+	margin-right:2px;
+}

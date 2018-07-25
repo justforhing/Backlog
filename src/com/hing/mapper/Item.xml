@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.hing.mapper.ItemMapper">
+		
+		<insert id="add" parameterType="Item">
+			insert into CUX_TODO_ITEMS(TODO_ITEM_ID,USER_ID,TODO_ITEM_TITLE,TODO_ITEM_CONTENT,PRIORITY,COMMENTS) values(#{TODO_ITEM_ID},#{user.USER_ID},#{TODO_ITEM_TITLE},#{TODO_ITEM_CONTENT},#{PRIORITY},#{COMMENTS})
+		</insert>
+		
+		<delete id="delete" parameterType="long">
+			delete  from CUX_TODO_ITEMS where TODO_ITEM_ID=#{id}
+		</delete>
+		
+		<update id="update" parameterType="Item">
+			update CUX_TODO_ITEMS set USER_ID=#{user.USER_ID},TODO_ITEM_TITLE=#{TODO_ITEM_TITLE},TODO_ITEM_CONTENT=#{TODO_ITEM_CONTENT},PRIORITY=#{PRIORITY},COMMENTS=#{COMMENTS} where TODO_ITEM_ID=#{TODO_ITEM_ID}
+		</update>
+		
+		<select id="get" resultType="Item" parameterType="long">
+			select * from CUX_TODO_ITEMS where TODO_ITEM_ID=#{id}
+		</select>
+		
+		<select id="list" resultType="Item">
+			select * from CUX_TODO_ITEMS
+		</select>
+		
+		<select id="getItemsByUserId" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id} order by i.CREATION_DATE DESC
+		</select>
+		
+		<select id="getItemsByKey" parameterType="String" resultType="Item">
+			select * from (select * from  CUX_TODO_ITEMS where USER_ID=#{0}) as t where t.TODO_ITEM_TITLE like CONCAT('%',#{1},'%') or t.TODO_ITEM_CONTENT like CONCAT('%',#{1},'%') or t.COMMENTS like CONCAT('%',#{1},'%')
+		</select>
+		
+		
+		<select id="getLastUpdateItems" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id} order by i.LAST_UPDATE_DATE DESC
+		</select>
+		
+		<select id="getAllItems" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id}
+		</select>
+		
+		<select id="getLowItems" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id} and PRIORITY='LOW'
+		</select>
+		
+		<select id="getMediumItems" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id} and PRIORITY='MEDIUM'
+		</select>
+		
+		<select id="getHighItems" parameterType="long" resultType="Item">
+			select i.*,u.* from  CUX_TODO_ITEMS i left join  CUX_USERS u on i.USER_ID=u.USER_ID where i.USER_ID=#{id} and PRIORITY='HIGH'
+		</select>
+	</mapper>
+	
